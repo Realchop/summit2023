@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "summit2023": {
+      "hosting": {
+        "app": [
+          "summit2023"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "summit2023"
+  }
+}
