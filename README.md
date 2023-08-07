@@ -5,7 +5,7 @@ Node (https://nodejs.org/en)
 Ionic (npm i -g @ionic/cli) 
 
 ## Installation
-git clone https://github.com/Realchop/summit2023
+git clone https://github.com/Realchop/summit2023.git
 npm i
 
 ## Running
@@ -13,7 +13,7 @@ npm i
 ionic serve
 ### Android/iOS 
 npx cap run android/ios  
-To build, replace "run" with "build" in previous commands.
+To build, replace run/serve with build in previous commands.
 
 
 ### Web
