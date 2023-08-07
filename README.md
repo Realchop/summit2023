@@ -5,7 +5,7 @@ Node (https://nodejs.org/en)
 Ionic (npm i -g @ionic/cli) 
 
 ## Installation
-git clone https://github.com/Realchop/summit2023.git
+git clone https://github.com/Realchop/summit2023.git  
 npm i
 
 ## Running
