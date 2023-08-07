@@ -16,6 +16,7 @@ npm i
 ionic serve
 ### Android/iOS 
 npx cap run android/ios  
+  
 To build, replace run/serve with build in previous commands.
 
 ## VSCode
