@@ -6,6 +6,7 @@ Ionic (npm i -g @ionic/cli)
 
 ## Installation
 git clone https://github.com/Realchop/summit2023.git  
+cd summit2023  
 npm i
 
 ## Running
