@@ -1,0 +1,7 @@
+{
+  "name": "summit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
