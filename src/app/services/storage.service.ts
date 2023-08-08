@@ -8,26 +8,34 @@ import { Storage } from '@ionic/storage-angular';
 export class StorageService {
 
   private _storage: Storage | null = null;
+  private ready: boolean = false;
 
-  constructor(private storage: Storage) {
-    this.init();
-  }
+  constructor(private storage: Storage) {}
 
   async init() {
     const storage = await this.storage.create();
+    this.ready = true;
     this._storage = storage;
   }
 
-  public set(key: string, value: any): void {
-    this._storage?.set(key, value);
+  public async set(key: string, value: any): Promise<void> {
+    if(!this.ready) await this.init(); // This cannot be moved to the constructor due to some 
+    this._storage?.set(key, value);    // unfortunate race conditions in angulars implementation
   }
 
   public async get(key: string): Promise<any> {
-    return this._storage?.get(key);
+    if(!this.ready) await this.init();
+    return await this._storage?.get(key);
   }
 
-  public remove(key: string): void {
+  public async remove(key: string): Promise<void> {
+    if(!this.ready) await this.init();
     this._storage?.remove(key);
+  }
+
+  public async clear(): Promise<void> {
+    if(!this.ready) await this.init();
+    this._storage?.clear();
   }
 
 }
