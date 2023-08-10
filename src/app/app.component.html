@@ -1,58 +1,70 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Summit 2023</ion-list-header>
-          <ion-note>by SUMA</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-
-        <ion-modal 
-        trigger="open-modal" 
-        (willDismiss)="onWillDismiss($event)"
-        canDismiss="false"
-        >
-          <ng-template>
-            <ion-header>
-              <ion-item-divider>
-                <ion-title color="primary" >Welcome</ion-title>
-              </ion-item-divider>
-            </ion-header>
-            <ion-content class="ion-padding">
-              <ion-item>
-                <ion-text style="padding: 1em 0;" >
-                  Welcome to SUMMIT 2023! Please enter the email adress you used to apply to this event
-                  as well as the password you were provided by mail. If you didn't recieve such an
-                  email and it didn't go to spam, please inform a SUMA member ASAP.
-                </ion-text>
+  <div *ngIf="!loading else loadingTemplate" style="display: contents;" >
+    <ion-split-pane *ngIf="success" contentId="main-content" >
+      <ion-menu contentId="main-content" type="overlay">
+        <ion-content>
+          <ion-list id="inbox-list">
+            <ion-list-header>Summit 2023</ion-list-header>
+            <ion-note>by SUMA</ion-note>
+  
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
               </ion-item>
-              <br>
-              <ion-item>
-                <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
-              </ion-item>
-              <br>
-              <ion-item>
-                <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
-              </ion-item>
-              <br>
-              <div style="display: flex; justify-content: center;" >
-                <ion-button (click)="confirm()" [strong]="true" [disabled]="!email || !password" >Confirm</ion-button>
-              </div>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+            </ion-menu-toggle>
+          </ion-list>
+  
+        </ion-content>
+      </ion-menu>
+      <ion-router-outlet id="main-content">
+        <ion-button id="open-modal" ></ion-button>
+      </ion-router-outlet>
+    </ion-split-pane>
+  </div>
 
+
+  <ion-modal canDismiss="false">
+    <ng-template>
+      <ion-header>
+        <ion-item-divider>
+          <ion-title color="primary" >Welcome</ion-title>
+        </ion-item-divider>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-text style="padding: 1em 0;" >
+            Welcome to SUMMIT 2023! Please enter the email adress you used to apply to this event
+            as well as the password you were provided by mail. If you didn't recieve such an
+            email and it didn't go to spam, please inform a SUMA member ASAP.
+          </ion-text>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <br>
+        <div style="display: flex; justify-content: center;" >
+          <ion-button (click)="confirm()" [strong]="true" [disabled]="!email || !password" >Confirm</ion-button>
+        </div>
       </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main-content">
-      <ion-button id="open-modal" ></ion-button>
-    </ion-router-outlet>
-  </ion-split-pane>
+    </ng-template>
+  </ion-modal>
+
+  <ng-template #loadingTemplate >
+    <div style="
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh;" >
+      <ion-spinner name="crescent"></ion-spinner>
+      <ion-label>Logging in...</ion-label>
+    </div>
+  </ng-template>
+
 </ion-app>

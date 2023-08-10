@@ -38,4 +38,12 @@ export class StorageService {
     this._storage?.clear();
   }
 
+  public saveLogin(email: string, password: string): void {
+    this.set("credentials", JSON.stringify({email: email, password: password}));
+  }
+
+  public async getSavedLogin(): Promise<{email: string, password: string} | null> {
+    return JSON.parse(await this.get("credentials"))
+  }
+
 }
