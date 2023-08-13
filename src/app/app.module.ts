@@ -18,16 +18,17 @@ import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angul
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), IonicStorageModule.forRoot(),
-     AppRoutingModule, 
-     provideFirebaseApp(() => initializeApp(environment.firebase)), 
-     provideAuth(() => {
+    IonicModule.forRoot(), 
+    IonicStorageModule.forRoot(),
+    AppRoutingModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebase)), 
+    provideAuth(() => {
       const auth = getAuth();
       if(environment.useEmulators)
-        connectAuthEmulator(auth, 'http://localhost:9099');
+        connectAuthEmulator(auth, 'http://localhost:9099', {disableWarnings: true});
       return auth;
     }), 
-     provideFirestore(() => {
+    provideFirestore(() => {
       const firestore = getFirestore();
       if(environment.useEmulators)
         connectFirestoreEmulator(firestore, 'localhost', 8080);
