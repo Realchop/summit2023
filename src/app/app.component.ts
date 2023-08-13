@@ -3,6 +3,7 @@ import { StorageService } from './services/storage.service';
 import { IonModal } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Roles } from './core/roles';
+import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,6 +12,8 @@ import { Roles } from './core/roles';
 export class AppComponent implements OnInit {
   @ViewChild(IonModal, {static: true}) modal!: IonModal;
   private auth = inject(Auth);
+  private userService = inject(UserService);
+  private storageService = inject(StorageService);
   public role: Roles = Roles.DELEGATE;
 
   public appPages = [
@@ -29,20 +32,12 @@ export class AppComponent implements OnInit {
   public loading: boolean = true;
   public success: boolean = false;
 
-  constructor(private storageService: StorageService) {
-    this.auth.onAuthStateChanged({
-      next: (user) => {
-        user?.getIdTokenResult(false)
-        .then((token) => {
-          switch(token.claims['role']) {
-            case "suma": this.role = Roles.SUMA; break;
-            case "company": this.role = Roles.COMPANY; break;
-            default: this.role = Roles.DELEGATE;
-          }
-      });
-      },
-      error: () => {},
-      complete: () => {}
+  constructor() {
+    this.userService.User$.subscribe((user) => {
+      if(user) {
+        this.role = user.role;
+      }
+      this.success = false;
     })
   }
 

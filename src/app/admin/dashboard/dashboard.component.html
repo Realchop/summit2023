@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin panel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Admin panel</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-segment (ionChange)="switchSegment($event)" value="news">
+    <ion-segment-button value="news">
+      <ion-label>News</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="agenda">
+      <ion-label>Agenda</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="events">
+      <ion-label>Events</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <app-manage-news *ngIf="selectedSegment == 'news'"></app-manage-news>
+  <app-manage-agenda *ngIf="selectedSegment == 'agenda'"></app-manage-agenda>
+  <app-manage-events *ngIf="selectedSegment == 'events'"></app-manage-events>
+
+</ion-content>
