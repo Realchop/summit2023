@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  useEmulators: true,
   firebase: {
     projectId: 'summit2023',
     appId: '1:1041198559428:web:2a051b763ddbaf1f2f5991',

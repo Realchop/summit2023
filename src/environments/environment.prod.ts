@@ -1,4 +1,5 @@
 export const environment = {
+  useEmulators: false,
   firebase: {
     projectId: 'summit2023',
     appId: '1:1041198559428:web:2a051b763ddbaf1f2f5991',
