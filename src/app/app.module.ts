@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
 // import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 
 @NgModule({
@@ -40,8 +41,14 @@ import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angul
     //     connectStorageEmulator(storage, 'localhost', 9199);
     //   return storage;
     // }),
-     FormsModule
-    ],
+    FormsModule, 
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+    })
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
