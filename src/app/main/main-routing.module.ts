@@ -5,6 +5,7 @@ import { MainPage } from './main.page';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserService } from '../services/user.service';
+import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
   {
@@ -32,10 +33,11 @@ const routes: Routes = [
   //   component: EventsComponent,
   //   pathMatch: 'full'
   // },
-  //   path: 'news',
-  //   component: NewsComponent,
-  //   pathMatch: 'full'
-  // },
+  {
+    path: 'news',
+    component: NewsComponent,
+    pathMatch: 'full'
+  },
   // {
   //   path: 'map',
   //   component: MapComponent,

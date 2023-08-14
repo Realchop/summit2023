@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ManageNewsComponent } from './manage-news/manage-news.component';
 import { ManageEventsComponent } from './manage-events/manage-events.component';
 import { ManageAgendaComponent } from './manage-agenda/manage-agenda.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ManageAgendaComponent } from './manage-agenda/manage-agenda.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    IonicModule
+    IonicModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

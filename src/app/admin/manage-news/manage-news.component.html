@@ -1,3 +1,52 @@
-<p>
-  manage-news works!
-</p>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>New notification</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-input 
+      type="text" 
+      [(ngModel)]="title"
+      placeholder="Title"
+      >
+    </ion-input>
+    
+    <ion-textarea 
+      [(ngModel)]="description"
+      placeholder="Description"
+      >
+    </ion-textarea>
+    
+    <ion-button 
+      [disabled]="!title || !description" 
+      color="success"
+      (click)="createNew()" 
+      >
+      Publish
+    </ion-button>
+    <ion-button 
+    [disabled]="!title && !description"
+    color="danger"
+    (click)="clear()"
+    > 
+      Clear 
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
+<ion-toast
+class="ion-text-center"
+[isOpen]="success"
+message="Created notification!"
+color="success"
+[duration]="3000"
+(didDismiss)="success=false"
+></ion-toast>
+
+<ion-toast
+class="ion-text-center"
+[isOpen]="error"
+message="An error has occured. Check console!"
+color="danger"
+[duration]="3000"
+(didDismiss)="error=false"
+></ion-toast>

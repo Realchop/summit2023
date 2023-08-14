@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 // import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         connectFirestoreEmulator(firestore, 'localhost', 8080);
       return firestore;
     }), 
+    provideMessaging(() => getMessaging()),
     //  provideStorage(() => {
     //   const storage = getStorage();
     //   if(environment.useEmulators)
@@ -44,9 +46,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     FormsModule, 
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-  // Register the ServiceWorker as soon as the application is stable
-  // or after 30 seconds (whichever comes first).
-  registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000'
     })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
