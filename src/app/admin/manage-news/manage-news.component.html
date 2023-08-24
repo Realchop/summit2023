@@ -1,7 +1,9 @@
 <!-- Content -->
 <ion-card style="max-width: 80%; margin: 5% 10%;" >
   <ion-card-header>
-    <ion-card-title class="ion-text-center" >New notification</ion-card-title>
+    <ion-card-title class="ion-text-center" >
+      {{ selectedId ? "Editing" : "New notification" }}
+    </ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <ion-input 
@@ -20,7 +22,9 @@
   
     <br>
     
-    <div style="display: flex; justify-content: space-evenly;" >
+    <div
+    *ngIf="!selectedId" 
+    style="display: flex; justify-content: space-evenly;" >
       <ion-button 
         [disabled]="!title || !description" 
         color="success"
@@ -36,29 +40,48 @@
         Clear 
       </ion-button>
     </div>
+    <div 
+    *ngIf="selectedId" 
+    style="display: flex; justify-content: space-evenly;" >
+      <ion-button 
+        [disabled]="!title || !description" 
+        color="success"
+        (click)="updateNews()" 
+        >
+        Update
+      </ion-button>
+      <ion-button
+        color="secondary"
+        (click)="this.clear()"
+      >
+        Cancel
+      </ion-button>
+      <ion-button 
+      [disabled]="!title && !description"
+      color="danger"
+      (click)="deleteNews()"
+      > 
+        Delete
+      </ion-button>
+    </div>
   </ion-card-content>
 </ion-card>
 
-<ion-title>Past news:</ion-title>
 <div *ngIf="news$ | async as news">
-    <app-news *ngFor="let n of news" [data]="n" [titleOnly]="true" ></app-news>
+<ion-title *ngIf="news.length" >Past news:</ion-title>
+    <app-news 
+    (click)="selectNews(n)"
+    *ngFor="let n of news" 
+    [data]="n" 
+    [titleOnly]="true" ></app-news>
 </div>
 
 <!-- Toasts -->
 <ion-toast
 class="ion-text-center"
-[isOpen]="success"
-message="Created notification!"
-color="success"
+[isOpen]="openToast"
+[message]="toastMessage"
+[color]="success ? 'success' : 'danger'"
 [duration]="3000"
-(didDismiss)="success=false"
-></ion-toast>
-
-<ion-toast
-class="ion-text-center"
-[isOpen]="error"
-message="An error has occured. Check console!"
-color="danger"
-[duration]="3000"
-(didDismiss)="error=false"
+(didDismiss)="openToast=false"
 ></ion-toast>
