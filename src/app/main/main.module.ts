@@ -10,21 +10,21 @@ import { MainPage } from './main.page';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
-import { NewsComponent } from './news/news.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MainPageRoutingModule
+    MainPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     MainPage, 
     EventsComponent, 
     ProfileComponent,
     NewsPageComponent,
-    NewsComponent
   ]
 })
 export class MainPageModule {}
