@@ -37,6 +37,4 @@ export class ProfileComponent {
    showNotifError(show: boolean): void {
     this.notificationErrorOccured = show;
    }
-
-
 }
