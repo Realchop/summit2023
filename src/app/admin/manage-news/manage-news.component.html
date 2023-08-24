@@ -1,6 +1,6 @@
-<ion-card>
+<ion-card style="max-width: 80%; margin: 5% 10%;" >
   <ion-card-header>
-    <ion-card-title>New notification</ion-card-title>
+    <ion-card-title class="ion-text-center" >New notification</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <ion-input 
@@ -13,23 +13,28 @@
     <ion-textarea 
       [(ngModel)]="description"
       placeholder="Description"
+      autoGrow="true"
       >
     </ion-textarea>
+  
+    <br>
     
-    <ion-button 
-      [disabled]="!title || !description" 
-      color="success"
-      (click)="createNew()" 
-      >
-      Publish
-    </ion-button>
-    <ion-button 
-    [disabled]="!title && !description"
-    color="danger"
-    (click)="clear()"
-    > 
-      Clear 
-    </ion-button>
+    <div style="display: flex; justify-content: space-evenly;" >
+      <ion-button 
+        [disabled]="!title || !description" 
+        color="success"
+        (click)="createNew()" 
+        >
+        Publish
+      </ion-button>
+      <ion-button 
+      [disabled]="!title && !description"
+      color="danger"
+      (click)="clear()"
+      > 
+        Clear 
+      </ion-button>
+    </div>
   </ion-card-content>
 </ion-card>
 
