@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Firestore, collection, query, orderBy, collectionData, addDoc, Timestamp } from '@angular/fire/firestore';
+import { Firestore, collection, query, orderBy, collectionData, addDoc, Timestamp, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +27,14 @@ export class NewsService {
        date: Timestamp.fromDate(new Date())
       }
      );
+  }
+
+  public updateNews(id: string, data: {title: string, description: string}) {
+    return updateDoc(doc(this.firestore, `news/${id}`), data);
+  }
+
+  public deleteNews(id: string) {
+    return deleteDoc(doc(this.firestore, `news/${id}`));
   }
 
 }
