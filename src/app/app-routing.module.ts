@@ -2,6 +2,7 @@ import { NgModule, inject } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Auth } from '@angular/fire/auth';
 import { StorageService } from './services/storage.service';
+import { UserService } from './services/user.service';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
     }],
     // Can be whatever, route won't ever be accessed
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canMatch: [() => {return inject(UserService).isSuma()}]
   },
   // All bad paths lead to profile
   {

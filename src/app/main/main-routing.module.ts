@@ -1,10 +1,9 @@
-import { NgModule, inject } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainPage } from './main.page';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
-import { UserService } from '../services/user.service';
 import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
@@ -17,11 +16,6 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
-    canMatch: [() => {return inject(UserService).isSuma()}]
   },
   // {
   //   path: 'agenda',
