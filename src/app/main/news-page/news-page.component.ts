@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData, orderBy, query } from '@angular/fire/firestore';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news-page',
@@ -7,14 +7,10 @@ import { Firestore, collection, collectionData, orderBy, query } from '@angular/
   styleUrls: ['./news-page.component.scss'],
 })
 export class NewsPageComponent {
-  private firestore = inject(Firestore);
+  private newsService = inject(NewsService);
   public news$;
 
   constructor() {
-    const q = query(
-                    collection(this.firestore, 'news'), 
-                    orderBy('date', 'desc')
-                  );
-    this.news$ = collectionData(q);
+    this.news$ = this.newsService.getNews();
   }
 }

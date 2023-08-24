@@ -39,6 +39,11 @@
   </ion-card-content>
 </ion-card>
 
+<ion-title>Past news:</ion-title>
+<div *ngIf="news$ | async as news">
+    <app-news *ngFor="let n of news" [data]="n" [titleOnly]="true" ></app-news>
+</div>
+
 <!-- Toasts -->
 <ion-toast
 class="ion-text-center"

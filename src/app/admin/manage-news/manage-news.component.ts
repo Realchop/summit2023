@@ -1,40 +1,39 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Firestore, Timestamp, addDoc, collection } from '@angular/fire/firestore';
+import { Component, inject } from '@angular/core';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-manage-news',
   templateUrl: './manage-news.component.html',
   styleUrls: ['./manage-news.component.scss'],
 })
-export class ManageNewsComponent  implements OnInit {
-  private firestore = inject(Firestore);
+export class ManageNewsComponent {
+  private newsService = inject(NewsService);
   public title: string = '';
   public description: string = '';
+  public news$;
 
   // Toast
   public success: boolean = false;
   public error: boolean = false;
 
-  constructor() { }
-
-  ngOnInit() {}
+  constructor() {
+    this.news$ = this.newsService.getNews();
+  }
 
   createNew(): void {
-    addDoc(
-      collection(this.firestore, 'news'),
+    this.newsService.createNews(
       {
-       title: this.title,
-       description: this.description,
-       date: Timestamp.fromDate(new Date())
-      }
-     ).then(()=>{
+        title: this.title, 
+        description: this.description
+      })
+    .then(()=>{
       this.clear();
       this.success = true;
     })
-     .catch((err) => {
+    .catch((err) => {
       console.log(err);
       this.error = true;
-    })
+    });
   }
 
   clear(): void {

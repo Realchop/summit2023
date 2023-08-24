@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class NewsComponent {
   @Input("data") data: any;
+  @Input("titleOnly") titleOnly: boolean = false;
 
   constructor() { }
 
