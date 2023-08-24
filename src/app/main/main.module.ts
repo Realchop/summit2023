@@ -9,6 +9,7 @@ import { MainPageRoutingModule } from './main-routing.module';
 import { MainPage } from './main.page';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NewsPageComponent } from './news-page/news-page.component';
 import { NewsComponent } from './news/news.component';
 
 @NgModule({
@@ -22,6 +23,7 @@ import { NewsComponent } from './news/news.component';
     MainPage, 
     EventsComponent, 
     ProfileComponent,
+    NewsPageComponent,
     NewsComponent
   ]
 })

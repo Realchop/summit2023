@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainPage } from './main.page';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
-import { NewsComponent } from './news/news.component';
+import { NewsPageComponent } from './news-page/news-page.component';
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
   // },
   {
     path: 'news',
-    component: NewsComponent,
+    component: NewsPageComponent,
     pathMatch: 'full'
   },
   // {

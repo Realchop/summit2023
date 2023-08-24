@@ -1,44 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>News</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">News</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div *ngIf="news$ | async as news">
-    <div *ngIf="news.length else noNews">
-      <ion-card *ngFor="let n of news" >
-        <ion-card-header>
-          <ion-card-title color="warning" >
-            {{ n['title'] }}
-          </ion-card-title>
-          <ion-card-subtitle>
-            {{ n['date'].toDate() | date: 'medium' }}
-          </ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-text color="secondary" >
-            {{ n['description'] }}
-          </ion-text>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
-
-  <ng-template #noNews>
-    <div style="display: flex; height: calc(100vh - 5rem); justify-content: center; align-items: center;" >
-      <ion-text>No news yet...</ion-text>
-    </div>
-  </ng-template>
-
-
-</ion-content>
+<ion-card >
+  <ion-card-header>
+    <ion-card-title color="warning" >
+      {{ data['title'] }}
+    </ion-card-title>
+    <ion-card-subtitle>
+      {{ data['date'].toDate() | date: 'medium' }}
+    </ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-text color="secondary" >
+      {{ data['description'] }}
+    </ion-text>
+  </ion-card-content>
+</ion-card>

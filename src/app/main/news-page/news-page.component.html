@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>News</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">News</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div *ngIf="news$ | async as news">
+    <div *ngIf="news.length else noNews">
+      <app-news *ngFor="let n of news" [data]="n" ></app-news>
+    </div>
+  </div>
+
+  <ng-template #noNews>
+    <div style="display: flex; height: calc(100vh - 5rem); justify-content: center; align-items: center;" >
+      <ion-text>No news yet...</ion-text>
+    </div>
+  </ng-template>
+
+
+</ion-content>
