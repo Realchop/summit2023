@@ -40,6 +40,6 @@ export class ProfileComponent {
 
    // Actual functionality goes here
    onScan(data: string): void {
-    console.log(data);
+    alert(data);
    }
 }

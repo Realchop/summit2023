@@ -14,15 +14,18 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card *ngFor="let user of userData$ | async" >
+<div *ngFor="let user of userData$ | async">
+  <ion-card >
     <ion-card-header>
       <ion-card-title>{{ user['fullName'] }}</ion-card-title>
       <ion-card-subtitle>{{ user['age'] }} years young</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      Get some personal stats here and a QR code generated from {{ user['uid'] }}
+      Get some personal stats here
     </ion-card-content>
   </ion-card>
+  <app-qr-generator [data]="user['uid']"></app-qr-generator>
+</div>
 
   <app-qr-reader (scanned)="onScan($event)" ></app-qr-reader>
 
