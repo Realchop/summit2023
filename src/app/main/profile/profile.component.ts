@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Firestore, collection, collectionData, limit, orderBy, query, where } from '@angular/fire/firestore';
 import { Messaging, getToken } from '@angular/fire/messaging';
@@ -8,7 +8,7 @@ import { Messaging, getToken } from '@angular/fire/messaging';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   private firestore = inject(Firestore);
   private auth = inject(Auth);
   private fcm = inject(Messaging);
@@ -18,12 +18,6 @@ export class ProfileComponent {
   public notificationErrorOccured: boolean = false;
 
   constructor() {
-    getToken(this.fcm, {vapidKey: this.key})
-    .then((currentToken)=> {
-      if(!currentToken) Notification.requestPermission();
-    })
-    .catch((err)=> this.notificationErrorOccured=true);
-
     const q = query(
                     collection(this.firestore, 'users'), 
                     where('uid', '==', this.auth.currentUser?.uid),
@@ -34,8 +28,27 @@ export class ProfileComponent {
     this.userData$ = collectionData(q);
    }
 
+   ngOnInit(): void {
+    getToken(this.fcm, {vapidKey: this.key})
+    .then((currentToken)=> {
+      // if(!currentToken) Notification.requestPermission();
+      // if(!currentToken) this.notificationErrorOccured=true;
+    })
+    .catch((err)=> {
+      // this.notificationErrorOccured=true;
+    });
+   }
+
    showNotifError(show: boolean): void {
     this.notificationErrorOccured = show;
+   }
+
+   ask(): void {
+    Notification.requestPermission()
+                .then(async () => {
+                    this.notificationErrorOccured = false;
+                    await getToken(this.fcm, {vapidKey: this.key})
+                  });
    }
 
    // Actual functionality goes here

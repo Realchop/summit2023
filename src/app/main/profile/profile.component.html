@@ -46,8 +46,9 @@
         the other, we are unable to send you push notifications
         when it gets updated so be sure to check it regularly.
       </p>
-      <div style="display: flex; justify-content: center;" >
-        <ion-button (click)="showNotifError(false)">Okay</ion-button>
+      <div style="display: flex; justify-content: space-evenly;" >
+        <ion-button (click)="ask()">Enable</ion-button>
+        <ion-button color="secondary" (click)="showNotifError(false)">Okay</ion-button>
       </div>
     </ion-content>
   </ng-template>
