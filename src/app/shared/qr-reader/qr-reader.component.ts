@@ -13,12 +13,13 @@ export class QrReaderComponent {
 
   public scanning: boolean = false;
   private ctx: CanvasRenderingContext2D | null = null;
+  private stream!: MediaStream;
 
   constructor() { }
 
   async startScan(): Promise<void> {
-    const stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
-    this.video.nativeElement.srcObject = stream;
+    this.stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
+    this.video.nativeElement.srcObject = this.stream;
     this.video.nativeElement.play();
     this.ctx = this.canvas.nativeElement.getContext("2d");
     this.scanning = true;
@@ -61,6 +62,7 @@ export class QrReaderComponent {
   stop(): void {
     this.scanning = false;
     this.video.nativeElement.srcObject = null;
+    this.stream.getTracks().forEach((track) => track.stop());
   }
 
 }
