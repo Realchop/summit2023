@@ -37,4 +37,9 @@ export class ProfileComponent {
    showNotifError(show: boolean): void {
     this.notificationErrorOccured = show;
    }
+
+   // Actual functionality goes here
+   onScan(data: string): void {
+    console.log(data);
+   }
 }
