@@ -17,7 +17,7 @@ export class QrReaderComponent {
   constructor() { }
 
   async startScan(): Promise<void> {
-    const stream = await navigator.mediaDevices.getUserMedia({video: true});
+    const stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
     this.video.nativeElement.srcObject = stream;
     this.video.nativeElement.play();
     this.ctx = this.canvas.nativeElement.getContext("2d");
