@@ -12,9 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'logout',
-    canMatch: [() => {
-      inject(StorageService).clear();
-      inject(Auth).signOut();
+    canMatch: [async () => {
+      await inject(StorageService).clear();
+      await inject(Auth).signOut();
       location.reload();
     }],
     // Can be whatever, route won't ever be accessed
