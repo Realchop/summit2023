@@ -1,45 +1,89 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { Firestore, Timestamp, addDoc, collection } from '@angular/fire/firestore';
+import { Component, inject } from '@angular/core';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-manage-news',
   templateUrl: './manage-news.component.html',
   styleUrls: ['./manage-news.component.scss'],
 })
-export class ManageNewsComponent  implements OnInit {
-  private firestore = inject(Firestore);
+export class ManageNewsComponent {
+  private newsService = inject(NewsService);
+  public selectedId: string | null = null;
   public title: string = '';
   public description: string = '';
+  public news$;
 
   // Toast
+  public openToast: boolean = false;
+  public toastMessage: string = '';
   public success: boolean = false;
-  public error: boolean = false;
 
-  constructor() { }
-
-  ngOnInit() {}
+  constructor() {
+    this.news$ = this.newsService.getNews();
+  }
 
   createNew(): void {
-    addDoc(
-      collection(this.firestore, 'news'),
+    this.newsService.createNews(
       {
-       title: this.title,
-       description: this.description,
-       date: Timestamp.fromDate(new Date())
-      }
-     ).then(()=>{
+        title: this.title, 
+        description: this.description
+      })
+    .then(()=>{
       this.clear();
       this.success = true;
+      this.openToast = true;
+      this.toastMessage = "Notification published!";
     })
-     .catch((err) => {
+    .catch((err) => {
       console.log(err);
-      this.error = true;
+      this.success = false;
+      this.openToast = true;
+      this.toastMessage = "Error! Check console";
+    });
+  }
+
+  updateNews(): void {
+    this.newsService.updateNews(this.selectedId!, {title: this.title, description: this.description})
+    .then(()=>{
+      this.clear();
+      this.success = true;
+      this.openToast = true;
+      this.toastMessage = "Notification updated!";
     })
+    .catch((err) => {
+      console.log(err);
+      this.success = false;
+      this.openToast = true;
+      this.toastMessage = "Error! Check console";
+    });
+  }
+
+  deleteNews(): void {
+    this.newsService.deleteNews(this.selectedId!)
+    .then(()=>{
+      this.clear();
+      this.success = true;
+      this.openToast = true;
+      this.toastMessage = "Notification deleted!";
+    })
+    .catch((err) => {
+      console.log(err);
+      this.success = false;
+      this.openToast = true;
+      this.toastMessage = "Error! Check console";
+    });
+  }
+
+  selectNews(data: any): void {
+    this.title = data['title'];
+    this.description = data['description'];
+    this.selectedId = data['id'];
   }
 
   clear(): void {
     this.title = '';
     this.description = '';
+    this.selectedId = null;
   }
 
 }

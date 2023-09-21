@@ -8,6 +8,7 @@ import { ManageNewsComponent } from './manage-news/manage-news.component';
 import { ManageEventsComponent } from './manage-events/manage-events.component';
 import { ManageAgendaComponent } from './manage-agenda/manage-agenda.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class AdminModule { }
