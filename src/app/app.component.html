@@ -54,7 +54,7 @@
         </ion-item>
         <br>
         <div style="display: flex; justify-content: center;" >
-          <ion-button (click)="confirm()" [strong]="true" [disabled]="!email || !password" >Confirm</ion-button>
+          <ion-button (click)="confirm()" [strong]="true" *ngIf="email && password" >Confirm</ion-button>
         </div>
       </ion-content>
     </ng-template>
