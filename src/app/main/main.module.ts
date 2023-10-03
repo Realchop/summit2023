@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgendaComponent } from './agenda/agenda.component';
+import { SplitPipe } from '../core/split.pipe';
 
 @NgModule({
   imports: [
@@ -19,14 +20,15 @@ import { AgendaComponent } from './agenda/agenda.component';
     FormsModule,
     IonicModule,
     MainPageRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   declarations: [
     MainPage, 
     EventsComponent, 
     ProfileComponent,
     NewsPageComponent,
-    AgendaComponent
+    AgendaComponent,
+    SplitPipe
   ]
 })
 export class MainPageModule {}

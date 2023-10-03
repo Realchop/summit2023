@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SegmentCustomEvent } from '@ionic/angular';
+import { AgendaService } from 'src/app/services/agenda.service';
 
 @Component({
   selector: 'app-agenda',
@@ -8,10 +9,13 @@ import { SegmentCustomEvent } from '@ionic/angular';
 })
 export class AgendaComponent {
   public selectedSegment: number = 26;
+  public data;
+  private agendaService = inject(AgendaService);
 
   constructor() {
     let day = new Date().getDay();
     this.selectedSegment = day > this.selectedSegment ? day : this.selectedSegment;
+    this.data = this.agendaService.getAgenda();
   }
 
   switchSegment(event: any): void {

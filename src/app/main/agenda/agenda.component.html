@@ -29,11 +29,26 @@
     </ion-segment-button>
   </ion-segment>
 
-  <p *ngIf="selectedSegment == 26">Prvi dan</p>
-  <p *ngIf="selectedSegment == 27">Drugi dan</p>
-  <p *ngIf="selectedSegment == 28">Treci dan</p>
-  <p *ngIf="selectedSegment == 29">Cetvrti dan</p>
 
-
-
+  <!-- Don't ask... -->
+  <div *ngIf="data | async as Data" style="display: contents;" >
+    <div *ngFor="let d of Data">
+      <ion-card *ngIf="d['day'] == selectedSegment" >
+        <ion-card-content> 
+          <ion-item *ngFor="let i of d['activities']" >
+            <div 
+            style="
+                   display: flex; 
+                   width: 100%;
+                   gap: 1em;
+                   " >
+              <p *ngFor="let s of (i | split: '@')" >
+                {{ s }}
+              </p>
+            </div>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
