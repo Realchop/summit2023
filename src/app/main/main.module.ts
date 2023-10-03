@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { SharedModule } from '../shared/shared.module';
+import { AgendaComponent } from './agenda/agenda.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     EventsComponent, 
     ProfileComponent,
     NewsPageComponent,
+    AgendaComponent
   ]
 })
 export class MainPageModule {}

@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Agenda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Agenda</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-segment (ionChange)="switchSegment($event)" value="{{selectedSegment}}">
+    <ion-segment-button value="26">
+      <ion-label>26. 10.</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="27">
+      <ion-label>27. 10.</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="28">
+      <ion-label>28. 10.</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="29">
+      <ion-label>29. 10.</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <p *ngIf="selectedSegment == 26">Prvi dan</p>
+  <p *ngIf="selectedSegment == 27">Drugi dan</p>
+  <p *ngIf="selectedSegment == 28">Treci dan</p>
+  <p *ngIf="selectedSegment == 29">Cetvrti dan</p>
+
+
+
+</ion-content>
