@@ -1,0 +1,13 @@
+#scanner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--ion-color-light);
+    
+    // When dark mode comes, update this
+    // @media (prefers-color-scheme: dark) {
+    //     background-color: #222428;
+    // }
+}
