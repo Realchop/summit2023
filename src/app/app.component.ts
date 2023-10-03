@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   public role: Roles = Roles.DELEGATE;
 
   public appPages = [
-    { title: 'Profile', url: '/main/profile', icon: 'person', role: Roles.DELEGATE },
-    { title: 'Admin panel', url: '/admin', icon: 'shield', role: Roles.SUMA },
-    { title: 'News', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
+    { title: 'Profil', url: '/main/profile', icon: 'person', role: Roles.DELEGATE },
+    { title: 'Admin', url: '/admin', icon: 'shield', role: Roles.SUMA },
+    { title: 'Vesti', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
     { title: 'Agenda', url: '/main/agenda', icon: 'calendar', role: Roles.DELEGATE },
-    { title: 'Events', url: '/main/events', icon: 'flame', role: Roles.DELEGATE },
-    { title: 'Map', url: '/main/map', icon: 'map', role: Roles.DELEGATE },
-    { title: 'Settings', url: '/main/settings', icon: 'settings', role: Roles.DELEGATE },
-    { title: 'Logout', url: 'logout', icon: 'exit', role: Roles.DELEGATE }
+    { title: 'Dogadjaji', url: '/main/events', icon: 'flame', role: Roles.DELEGATE },
+    { title: 'Mapa', url: '/main/map', icon: 'map', role: Roles.DELEGATE },
+    { title: 'Podesavanja', url: '/main/settings', icon: 'settings', role: Roles.DELEGATE },
+    { title: 'Odjavi se', url: 'logout', icon: 'exit', role: Roles.DELEGATE }
   ];
 
   public email: string = '';

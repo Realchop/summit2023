@@ -32,13 +32,13 @@ export class ManageNewsComponent {
       this.clear();
       this.success = true;
       this.openToast = true;
-      this.toastMessage = "Notification published!";
+      this.toastMessage = "Vest objavljena!";
     })
     .catch((err) => {
       console.log(err);
       this.success = false;
       this.openToast = true;
-      this.toastMessage = "Error! Check console";
+      this.toastMessage = "Greska! Proveri konzolu";
     });
   }
 
@@ -48,13 +48,13 @@ export class ManageNewsComponent {
       this.clear();
       this.success = true;
       this.openToast = true;
-      this.toastMessage = "Notification updated!";
+      this.toastMessage = "Vest promenjena!";
     })
     .catch((err) => {
       console.log(err);
       this.success = false;
       this.openToast = true;
-      this.toastMessage = "Error! Check console";
+      this.toastMessage = "Greska! Proveri konzolu";
     });
   }
 
@@ -64,13 +64,13 @@ export class ManageNewsComponent {
       this.clear();
       this.success = true;
       this.openToast = true;
-      this.toastMessage = "Notification deleted!";
+      this.toastMessage = "Vest obrisana!";
     })
     .catch((err) => {
       console.log(err);
       this.success = false;
       this.openToast = true;
-      this.toastMessage = "Error! Check console";
+      this.toastMessage = "Greska! Proveri konzolu";
     });
   }
 

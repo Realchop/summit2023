@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
 import jsQR from 'jsqr';
 
 @Component({
@@ -6,7 +6,7 @@ import jsQR from 'jsqr';
   templateUrl: './qr-reader.component.html',
   styleUrls: ['./qr-reader.component.scss'],
 })
-export class QrReaderComponent {
+export class QrReaderComponent implements OnDestroy {
   @ViewChild("video") video!: ElementRef<HTMLVideoElement>;
   @ViewChild("canvas") canvas!: ElementRef<HTMLCanvasElement>;
   @Output("scanned") scanned: EventEmitter<string> = new EventEmitter<string>();
@@ -24,6 +24,10 @@ export class QrReaderComponent {
     this.ctx = this.canvas.nativeElement.getContext("2d");
     this.scanning = true;
     requestAnimationFrame(this.scan.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    this.stop();
   }
 
   scan(): void {

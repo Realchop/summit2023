@@ -4,7 +4,10 @@
       <ion-menu contentId="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Summit 2023</ion-list-header>
+            <ion-list-header> 
+              <ion-text color="primary" >Math</ion-text> 
+              <ion-text color="secondary" >Verse</ion-text>
+            </ion-list-header>
             <ion-note>by SUMA</ion-note>
   
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
@@ -26,15 +29,17 @@
 
   <ion-modal canDismiss="false">
     <ng-template>
-      <ion-header>
-        <ion-item-divider>
-          <ion-title color="primary" >Welcome</ion-title>
-        </ion-item-divider>
-      </ion-header>
-      <ion-content class="ion-padding">
+      <ion-content class="ion-padding stop">
+        <br>
+        <br>
+        <br>
+        <br>  
         <ion-item>
           <ion-text style="padding: 1em 0;" >
-            Welcome to SUMMIT 2023! Please enter the email adress you used to apply to this event
+            Welcome to the first ever
+            <ion-text color="primary" >Math</ion-text> 
+            <ion-text color="secondary" >Verse</ion-text>
+            ! Please enter the email adress you used to apply to this event
             as well as the password you were provided by mail. If you didn't recieve such an
             email and it didn't go to spam, please inform a SUMA member ASAP.
           </ion-text>
@@ -49,7 +54,7 @@
         </ion-item>
         <br>
         <div style="display: flex; justify-content: center;" >
-          <ion-button (click)="confirm()" [strong]="true" [disabled]="!email || !password" >Confirm</ion-button>
+          <ion-button (click)="confirm()" [strong]="true" *ngIf="email && password" >Confirm</ion-button>
         </div>
       </ion-content>
     </ng-template>

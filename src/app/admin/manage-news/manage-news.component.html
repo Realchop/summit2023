@@ -2,7 +2,7 @@
 <ion-card style="max-width: 80%; margin: 5% 10%;" >
   <ion-card-header>
     <ion-card-title class="ion-text-center" >
-      {{ selectedId ? "Editing" : "New notification" }}
+      {{ selectedId ? "Menjanje" : "Nova vest" }}
     </ion-card-title>
   </ion-card-header>
   <ion-card-content>
@@ -30,14 +30,14 @@
         color="success"
         (click)="createNew()" 
         >
-        Publish
+        Objavi
       </ion-button>
       <ion-button 
       [disabled]="!title && !description"
       color="danger"
       (click)="clear()"
       > 
-        Clear 
+        Ponisti 
       </ion-button>
     </div>
     <div 
@@ -48,27 +48,27 @@
         color="success"
         (click)="updateNews()" 
         >
-        Update
+        Potvrdi
       </ion-button>
       <ion-button
         color="secondary"
         (click)="this.clear()"
       >
-        Cancel
+        Ponisti
       </ion-button>
       <ion-button 
       [disabled]="!title && !description"
       color="danger"
       (click)="deleteNews()"
       > 
-        Delete
+        Obrisi
       </ion-button>
     </div>
   </ion-card-content>
 </ion-card>
 
 <div *ngIf="news$ | async as news">
-<ion-title *ngIf="news.length" >Past news:</ion-title>
+<ion-title *ngIf="news.length" >Aktivne vesti:</ion-title>
     <app-news 
     (click)="selectNews(n)"
     *ngFor="let n of news" 

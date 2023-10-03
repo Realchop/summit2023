@@ -1,3 +1,16 @@
+ion-modal {
+  --width: 100vw;
+  --height: 100vh;
+  --background: url(../assets/images/pozadina.jpg) 0 0/100% 100% no-repeat;  
+  --ion-background-color: transparent;
+}
+
+.stop {
+  max-width: 400px;
+  align-self: center;
+  --background: url(../assets/images/notif_board.png) 50% -400px/110% 1020px no-repeat;  
+}
+
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));
 }
@@ -116,9 +129,4 @@ ion-note {
 
 ion-item.selected {
   --color: var(--ion-color-primary);
-}
-
-ion-modal {
-  --width: 100vw;
-  --height: 100vh;
 }
