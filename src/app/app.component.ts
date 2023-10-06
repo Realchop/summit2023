@@ -3,7 +3,6 @@ import { StorageService } from './services/storage.service';
 import { IonModal } from '@ionic/angular';
 import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import { Roles } from './core/roles';
-import { UserService } from './services/user.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -12,7 +11,6 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit {
   @ViewChild(IonModal, {static: true}) modal!: IonModal;
   private auth = inject(Auth);
-  private userService = inject(UserService);
   private storageService = inject(StorageService);
   public role: Roles = Roles.DELEGATE;
 
@@ -31,15 +29,10 @@ export class AppComponent implements OnInit {
   public password: string = '';
   public loading: boolean = true;
   public success: boolean = false;
+  public toastMessage: string = '';
+  public openToast: boolean = false;
 
-  constructor() {
-    this.userService.User$.subscribe((user) => {
-      if(user) {
-        this.role = user.role;
-      }
-      this.success = false;
-    })
-  }
+  constructor() {}
 
   async ngOnInit(): Promise<void> {
     const user = this.auth.currentUser;
@@ -62,14 +55,31 @@ export class AppComponent implements OnInit {
   loginAttempt(email: string, password: string): void {
     signInWithEmailAndPassword(this.auth, email, password)
     .then((userCred)=>{
-      this.loading = false;
       this.success = true;
       this.storageService.saveLogin(email, password);
+      this.toastMessage = "Uspešno ste se ulogovali!"
+      userCred.user.getIdTokenResult(false)
+                   .then((token) => {
+                    switch(token.claims['role']) {
+                      case "suma": this.role = Roles.SUMA; break;
+                      case "company": this.role = Roles.COMPANY; break;
+                      default: this.role = Roles.DELEGATE;
+                    }
+                   });
     })
-    .catch(()=>{
-      this.loading = false;
+    .catch((e)=>{
       this.modal.isOpen = true;
       this.modal.canDismiss = false;
+      switch(e.code) {
+        case "auth/invalid-email": this.toastMessage = "Email ne postoji!"; break;
+        case "auth/wrong-password": this.toastMessage = "Pogrešna šifra!"; break;
+        case "auth/network-request-failed": this.toastMessage = "Nema interneta!"; break;
+        default: this.toastMessage = "Nepoznata greška!"
+      }
+    })
+    .finally(() => {
+      this.loading = false;
+      this.openToast = true;
     })
   }
 }

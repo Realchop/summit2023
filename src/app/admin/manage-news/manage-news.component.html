@@ -9,13 +9,13 @@
     <ion-input 
       type="text" 
       [(ngModel)]="title"
-      placeholder="Title"
+      placeholder="Naslov"
       >
     </ion-input>
     
     <ion-textarea 
       [(ngModel)]="description"
-      placeholder="Description"
+      placeholder="Poruka"
       autoGrow="true"
       >
     </ion-textarea>
@@ -73,7 +73,9 @@
     (click)="selectNews(n)"
     *ngFor="let n of news" 
     [data]="n" 
-    [titleOnly]="true" ></app-news>
+    [titleOnly]="true"
+    [selected]="n['id'] == selectedId"
+    ></app-news>
 </div>
 
 <!-- Toasts -->

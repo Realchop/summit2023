@@ -1,7 +1,8 @@
 import { NgModule, inject } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { UserService } from './services/user.service';
 import { LogoutGuard } from './core/logout.guard';
+import { RoleGuard } from './core/role.guard';
+import { Roles } from './core/roles';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canMatch: [() => {return inject(UserService).isSuma()}]
+    canMatch: [() => RoleGuard(Roles.SUMA)]
   },
   // All bad paths lead to profile
   {

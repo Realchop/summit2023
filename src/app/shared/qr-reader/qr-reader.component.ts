@@ -27,7 +27,7 @@ export class QrReaderComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stop();
+    if(this.scanning) this.stop();
   }
 
   scan(): void {
