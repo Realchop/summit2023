@@ -72,4 +72,15 @@
     </div>
   </ng-template>
 
+  <!-- Toasts -->
+  <ion-toast
+  class="ion-text-center"
+  [isOpen]="openToast"
+  [message]="toastMessage"
+  [color]="success ? 'success' : 'danger'"
+  [duration]="3000"
+  (didDismiss)="openToast=false"
+  ></ion-toast>
+
+
 </ion-app>
