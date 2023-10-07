@@ -19,7 +19,12 @@ export class ModalComponent implements OnInit {
   constructor(private modalCtrl: ModalController) { }
 
   async ngOnInit(): Promise<void> {
-    this.stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
+    try {
+      this.stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}});
+    }
+    catch {
+      return this.stop();
+    }
     this.video.nativeElement.srcObject = this.stream;
     this.video.nativeElement.play();
     this.ctx = this.canvas.nativeElement.getContext("2d");
@@ -59,10 +64,12 @@ export class ModalComponent implements OnInit {
       requestAnimationFrame(this.scan.bind(this));
   }
 
-  stop(code: string | null): void {
-    this.scanning = false;
-    this.video.nativeElement.srcObject = null;
-    this.stream.getTracks().forEach((track) => track.stop());
+  stop(code: string | null = null): void {
+    if(this.scanning) {
+      this.scanning = false;
+      this.video.nativeElement.srcObject = null;
+      this.stream.getTracks().forEach((track) => track.stop());
+    }
     this.modalCtrl.dismiss(code);
   }
 
