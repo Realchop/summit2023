@@ -1,25 +1,4 @@
-<div style="display: flex; justify-content: center;" >
-  <ion-button *ngIf="!scanning" (click)="startScan()" >
-    <ion-icon slot="start" name="qr-code-outline"></ion-icon>
-    Skeniraj
-  </ion-button>
-</div>
-
-<div id="scanner" [style]="scanning ? '' : 'display: none;'" >
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <ion-card-content>
-    <video #video width="100%" ></video>
-    <canvas #canvas hidden></canvas>
-  </ion-card-content>
-  <div style="display: flex; justify-content: center;" >
-    <ion-button (click)="stop()" >
-      <ion-icon slot="start" name="stop"></ion-icon>
-      Zaustavi
-    </ion-button>
-  </div>
-</div>
-
+<ion-button *ngIf="!scanning" (click)="startScan()" >
+  <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+  {{ text }}
+</ion-button>

@@ -4,6 +4,7 @@ import { NewsComponent } from './news/news.component';
 import { IonicModule } from '@ionic/angular';
 import { QrReaderComponent } from './qr-reader/qr-reader.component';
 import { QrGeneratorComponent } from './qr-generator/qr-generator.component';
+import { ModalComponent } from './qr-reader/modal/modal.component';
 
 
 
@@ -11,7 +12,8 @@ import { QrGeneratorComponent } from './qr-generator/qr-generator.component';
   declarations: [
     NewsComponent, 
     QrReaderComponent,
-    QrGeneratorComponent
+    ModalComponent, // FOR QR READER ONLY
+    QrGeneratorComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,7 @@ import { QrGeneratorComponent } from './qr-generator/qr-generator.component';
   exports: [
     NewsComponent, 
     QrReaderComponent,
-    QrGeneratorComponent
+    QrGeneratorComponent,
   ]
 })
 export class SharedModule { }
