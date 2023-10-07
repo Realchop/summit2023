@@ -71,10 +71,11 @@ export class AppComponent implements OnInit {
       this.modal.isOpen = true;
       this.modal.canDismiss = false;
       switch(e.code) {
-        case "auth/invalid-email": this.toastMessage = "Email ne postoji!"; break;
+        case "auth/invalid-email": this.toastMessage = "Nepravilan email!"; break;
         case "auth/wrong-password": this.toastMessage = "Pogrešna šifra!"; break;
         case "auth/network-request-failed": this.toastMessage = "Nema interneta!"; break;
-        default: this.toastMessage = "Nepoznata greška!"
+        case "auth/user-not-found": this.toastMessage = "Email nije registrovan!"; break;
+        default: console.log(e); this.toastMessage = "Nepoznata greška!";
       }
     })
     .finally(() => {
