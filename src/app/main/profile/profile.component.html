@@ -32,26 +32,3 @@
   </div>
 
 </ion-content>
-
-<ion-modal [isOpen]="notificationErrorOccured">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Warning</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <p>
-        A notification error has occured.
-        Bear in mind that the "news" tab is regularly
-        updated with new information. For one reason or
-        the other, we are unable to send you push notifications
-        when it gets updated so be sure to check it regularly.
-      </p>
-      <div style="display: flex; justify-content: space-evenly;" >
-        <ion-button (click)="ask()">Enable</ion-button>
-        <ion-button color="secondary" (click)="showNotifError(false)">Okay</ion-button>
-      </div>
-    </ion-content>
-  </ng-template>
-</ion-modal>

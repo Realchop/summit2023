@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
-import { Firestore, collection, collectionData, limit, orderBy, query, where } from '@angular/fire/firestore';
-import { Messaging, getToken } from '@angular/fire/messaging';
+import { MessagingService } from 'src/app/services/messaging.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,46 +8,22 @@ import { Messaging, getToken } from '@angular/fire/messaging';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  private firestore = inject(Firestore);
-  private auth = inject(Auth);
-  private fcm = inject(Messaging);
-  private key = "BOo4VfR0iMDCS2bC5XalAFT5Xl5Z14VDxj9YU1uVDXVlMvwHF7mAtISoISH_h03Ni12hsOqGfMCckghrh9MnwIU";
+  private userService = inject(UserService);
+  private messagingService = inject(MessagingService);
   
   public userData$; 
   public notificationErrorOccured: boolean = false;
 
   constructor() {
-    const q = query(
-                    collection(this.firestore, 'users'), 
-                    where('uid', '==', this.auth.currentUser?.uid),
-                    limit(1),
-                    // orderBy('fullName')
-                  );
-
-    this.userData$ = collectionData(q);
+    this.userData$ = this.userService.getCurrentUser();
    }
 
-   ngOnInit(): void {
-    getToken(this.fcm, {vapidKey: this.key})
-    .then((currentToken)=> {
-      // if(!currentToken) Notification.requestPermission();
-      // if(!currentToken) this.notificationErrorOccured=true;
-    })
-    .catch((err)=> {
-      // this.notificationErrorOccured=true;
-    });
+   async ngOnInit(): Promise<void> {
+    this.notificationErrorOccured = await this.messagingService.init() === null;
    }
 
-   showNotifError(show: boolean): void {
-    this.notificationErrorOccured = show;
-   }
-
-   ask(): void {
-    Notification.requestPermission()
-                .then(async () => {
-                    this.notificationErrorOccured = false;
-                    await getToken(this.fcm, {vapidKey: this.key})
-                  });
+   ask() {
+    this.messagingService.ask();
    }
 
    // Actual functionality goes here
