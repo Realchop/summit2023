@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
 
   public appPages = [
     { title: 'Profil', url: '/main/profile', icon: 'person', role: Roles.DELEGATE },
-    { title: 'Admin', url: '/admin', icon: 'shield', role: Roles.SUMA },
+    { title: 'Admin', url: '/admin/dashboard', icon: 'shield', role: Roles.SUMA },
+    { title: 'Delegati', url: '/admin/users', icon: 'search', role: Roles.SUMA },
     { title: 'Vesti', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
     { title: 'Agenda', url: '/main/agenda', icon: 'calendar', role: Roles.DELEGATE },
     { title: 'Mapa', url: '/main/map', icon: 'map', role: Roles.DELEGATE },

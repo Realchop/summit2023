@@ -17,7 +17,7 @@ export class MessagingService {
       return token;
     }
     catch (e) {
-      console.log(e);
+      // console.log(e);
       return null;
     }
   }
