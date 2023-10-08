@@ -1,10 +1,11 @@
 {
-  "name": "Summit2023",
-  "short_name": "Summit",
-  "theme_color": "#ed9b4e",
-  "background_color": "#000000",
+  "name": "MathVerse",
+  "short_name": "MathVerse",
+  "theme_color": "#005d22",
+  "background_color": "#e6dd94",
   "gcm_sender_id": "103953800507",
   "display": "standalone",
+  "orientation": "portrait",  
   "scope": "./",
   "start_url": "./",
   "icons": [
