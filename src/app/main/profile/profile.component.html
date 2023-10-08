@@ -27,7 +27,9 @@
   <app-qr-generator [data]="user['uid']"></app-qr-generator>
 </div>
 
-  <app-qr-reader (scanned)="onScan($event)" ></app-qr-reader>
+  <div style="display: flex; justify-content: center;" >
+    <app-qr-reader (scanned)="onScan($event)" ></app-qr-reader>
+  </div>
 
 </ion-content>
 
