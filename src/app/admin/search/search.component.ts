@@ -16,7 +16,7 @@ export class SearchComponent {
   }
 
   filterOut(fullName: string) {
-    return fullName.includes(this.filter);
+    return fullName.toLowerCase().includes(this.filter.toLowerCase());
   }
 
   changeFilter(filter: any) {

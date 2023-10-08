@@ -18,7 +18,23 @@
   (ionChange)="changeFilter($event)" 
   ></ion-searchbar>
 
-  <ion-card *ngFor="let user of users$ | async | async" >
+<div *ngIf="users$ | async | async as Users">
+  <ion-card *ngIf="!filter" >
+    <ion-card-header>
+      <ion-title color="primary" class="ion-text-center" >Ukupno ih ima: {{ Users.length }}</ion-title>
+      <ion-card-content>
+        <ion-text class="ion-text-justify" >
+          Ukoliko treba da ih bude vise, nista strasno.
+          Izloguj se, uloguj ponovo i malo duze sacekaj
+          na ovoj strani. Napusti stranu pa se vrati. Da
+          li su sada svi tu? Ponavljaj dok ih ne bude 
+          tacno koliko treba. U kalkulaciji ucestvuju i
+          SUMA nalozi.
+        </ion-text>
+      </ion-card-content>
+    </ion-card-header>
+  </ion-card>
+  <ion-card *ngFor="let user of Users" >
     <!-- By far the most cursed thing here ^^^^^^^^^^ -->
     <ion-card-content *ngIf="filterOut(user['fullName'])" >
       <div style="display: flex; justify-content: space-between;" >
@@ -34,5 +50,6 @@
       </div>
     </ion-card-content>
   </ion-card>
+</div>
 
 </ion-content>
