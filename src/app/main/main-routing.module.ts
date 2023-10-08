@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainPage } from './main.page';
-import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { AgendaComponent } from './agenda/agenda.component';
@@ -23,11 +22,6 @@ const routes: Routes = [
     component: AgendaComponent,
     pathMatch: 'full'
   },
-  // {
-  //   path: 'events',
-  //   component: EventsComponent,
-  //   pathMatch: 'full'
-  // },
   {
     path: 'news',
     component: NewsPageComponent,
