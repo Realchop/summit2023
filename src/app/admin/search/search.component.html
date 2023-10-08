@@ -18,7 +18,8 @@
   (ionChange)="changeFilter($event)" 
   ></ion-searchbar>
 
-  <ion-card *ngFor="let user of users$ | async" >
+  <ion-card *ngFor="let user of users$ | async | async" >
+    <!-- By far the most cursed thing here ^^^^^^^^^^ -->
     <ion-card-content *ngIf="filterOut(user['fullName'])" >
       <div style="display: flex; justify-content: space-between;" >
         <ion-title color="primary" >{{ user['fullName'] }}</ion-title>

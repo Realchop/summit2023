@@ -46,4 +46,11 @@ export class StorageService {
     return JSON.parse(await this.get("credentials"))
   }
 
+  public async saveUsers(value: any): Promise<void> {
+    this.set("users", JSON.stringify(value));
+  }
+
+  public async getSavedUsers(): Promise<any> {
+    return JSON.parse(await this.get("users"));
+  }
 }

@@ -1,6 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Firestore, arrayRemove, arrayUnion, collection, collectionData, doc, docData, limit, query, updateDoc, where } from '@angular/fire/firestore';
+import { StorageService } from './storage.service';
+import { of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +10,7 @@ import { Firestore, arrayRemove, arrayUnion, collection, collectionData, doc, do
 export class UserService {
   private firestore = inject(Firestore);
   private auth = inject(Auth)
+  private ss = inject(StorageService);
 
   constructor() { }
 
@@ -21,10 +24,12 @@ export class UserService {
     return collectionData(q, {idField: 'id'});
   }
 
-  getAllUsers() {
+  async getAllUsers() {
+    const users = await this.ss.getSavedUsers();
+    if(users) return of(users);
     const q = query(collection(this.firestore, 'users'));
 
-    return collectionData(q, {idField: 'id'});
+    return collectionData(q, {idField: 'id'}).pipe(tap((value) => this.ss.saveUsers(value)));
   }
 
   attendEvent(documentId: string, eventId: string) {
