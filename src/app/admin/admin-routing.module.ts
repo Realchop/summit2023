@@ -16,11 +16,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'lectures',
-    component: LecturesComponent,
-    pathMatch: 'full'
-  },
-  {
     path: '**',
     redirectTo: 'dashboard'
   }

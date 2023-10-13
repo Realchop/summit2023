@@ -14,20 +14,24 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-segment (ionChange)="switchSegment($event)" value="news">
+  <ion-segment 
+    (ionChange)="switchSegment($event)" 
+    value="news"
+    [scrollable]="true"
+    >
     <ion-segment-button value="news">
       <ion-label>Vesti</ion-label>
     </ion-segment-button>
     <ion-segment-button value="agenda">
       <ion-label>Agenda</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="events">
-      <ion-label>Dogadjaji</ion-label>
+    <ion-segment-button value="lectures">
+      <ion-label>Predavanja</ion-label>
     </ion-segment-button>
   </ion-segment>
 
   <app-manage-news *ngIf="selectedSegment == 'news'"></app-manage-news>
   <app-manage-agenda *ngIf="selectedSegment == 'agenda'"></app-manage-agenda>
-  <app-manage-events *ngIf="selectedSegment == 'events'"></app-manage-events>
+  <app-lectures *ngIf="selectedSegment == 'lectures'"></app-lectures>
 
 </ion-content>

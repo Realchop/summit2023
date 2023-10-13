@@ -32,12 +32,12 @@ export class UserService {
     return collectionData(q, {idField: 'id'}).pipe(tap((value) => this.ss.saveUsers(value)));
   }
 
-  attendEvent(documentId: string, eventId: string) {
-    updateDoc(doc(this.firestore, `users/${documentId}`), {attended: arrayUnion(eventId)});
+  attendLecture(documentId: string, lectureId: string) {
+    updateDoc(doc(this.firestore, `users/${documentId}`), {attended: arrayUnion(lectureId)});
   }
 
-  leaveEvent(documentId: string, eventId: string) {
-    updateDoc(doc(this.firestore, `users/${documentId}`), {attended: arrayRemove(eventId)});
+  removeLecture(documentId: string, lectureId: string) {
+    updateDoc(doc(this.firestore, `users/${documentId}`), {attended: arrayRemove(lectureId)});
   }
 
 }
