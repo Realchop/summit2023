@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { QrReaderComponent } from './qr-reader/qr-reader.component';
 import { QrGeneratorComponent } from './qr-generator/qr-generator.component';
 import { ModalComponent } from './qr-reader/modal/modal.component';
+import { LinkPipe } from '../core/link.pipe';
 
 
 
@@ -14,6 +15,7 @@ import { ModalComponent } from './qr-reader/modal/modal.component';
     QrReaderComponent,
     ModalComponent, // FOR QR READER ONLY
     QrGeneratorComponent,
+    LinkPipe
   ],
   imports: [
     CommonModule,
