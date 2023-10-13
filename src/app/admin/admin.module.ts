@@ -10,6 +10,7 @@ import { ManageAgendaComponent } from './manage-agenda/manage-agenda.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
+import { LecturesComponent } from './lectures/lectures.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SearchComponent } from './search/search.component';
     ManageNewsComponent,
     ManageEventsComponent,
     ManageAgendaComponent,
-    SearchComponent
+    SearchComponent,
+    LecturesComponent
   ],
   imports: [
     CommonModule,

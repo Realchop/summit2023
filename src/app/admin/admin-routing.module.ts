@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchComponent } from './search/search.component';
+import { LecturesComponent } from './lectures/lectures.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
   {
     path: 'users',
     component: SearchComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'lectures',
+    component: LecturesComponent,
     pathMatch: 'full'
   },
   {
