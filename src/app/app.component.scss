@@ -3,6 +3,10 @@ ion-modal {
   --height: 100vh;
   --background: url(../assets/images/pozadina.png) center/auto 100% no-repeat;  
   --ion-background-color: transparent;
+
+  @media screen and (min-width: calc(100vh * 16 / 9)) {
+    --background: url(../assets/images/pozadina.png) center/100% 100% no-repeat;  
+  }
 }
 
 .stop {
@@ -10,6 +14,9 @@ ion-modal {
   align-self: center;
   --background: url(../assets/images/notif_board.png) 50% -400px/110% 1020px no-repeat;  
 }
+
+
+// Dont touch
 
 ion-menu ion-content {
   --background: var(--ion-item-background, var(--ion-background-color, #fff));

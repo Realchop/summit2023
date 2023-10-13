@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
 
   public appPages = [
     { title: 'Profil', url: '/main/profile', icon: 'person', role: Roles.DELEGATE },
-    { title: 'Admin', url: '/admin', icon: 'shield', role: Roles.SUMA },
+    { title: 'Admin', url: '/admin/dashboard', icon: 'shield', role: Roles.SUMA },
+    { title: 'Delegati', url: '/admin/users', icon: 'search', role: Roles.SUMA },
     { title: 'Vesti', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
     { title: 'Agenda', url: '/main/agenda', icon: 'calendar', role: Roles.DELEGATE },
-    { title: 'Dogadjaji', url: '/main/events', icon: 'flame', role: Roles.DELEGATE },
     { title: 'Mapa', url: '/main/map', icon: 'map', role: Roles.DELEGATE },
     { title: 'Podesavanja', url: '/main/settings', icon: 'settings', role: Roles.DELEGATE },
     { title: 'Odjavi se', url: 'logout', icon: 'exit', role: Roles.DELEGATE }
@@ -71,10 +71,11 @@ export class AppComponent implements OnInit {
       this.modal.isOpen = true;
       this.modal.canDismiss = false;
       switch(e.code) {
-        case "auth/invalid-email": this.toastMessage = "Email ne postoji!"; break;
+        case "auth/invalid-email": this.toastMessage = "Nepravilan email!"; break;
         case "auth/wrong-password": this.toastMessage = "Pogrešna šifra!"; break;
         case "auth/network-request-failed": this.toastMessage = "Nema interneta!"; break;
-        default: this.toastMessage = "Nepoznata greška!"
+        case "auth/user-not-found": this.toastMessage = "Email nije registrovan!"; break;
+        default: console.log(e); this.toastMessage = "Nepoznata greška!";
       }
     })
     .finally(() => {

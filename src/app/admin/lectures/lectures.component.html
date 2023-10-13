@@ -1,0 +1,21 @@
+<ion-card>
+  <ion-card-content>
+    <ion-input 
+      [(ngModel)]="lectureName" 
+      placeholder="Naziv predavanja" >
+    </ion-input>
+    <div *ngIf="lectureName" style="display: flex; justify-content: center;" >
+      <app-qr-reader (scanned)="addLecture($event)" ></app-qr-reader>
+    </div>
+  </ion-card-content>
+</ion-card>  
+
+<!-- Toasts -->
+<ion-toast
+  class="ion-text-center"
+  [isOpen]="openToast"
+  [message]="toastMessage"
+  [color]="success ? 'success' : 'danger'"
+  [duration]="3000"
+  (didDismiss)="openToast=false"
+></ion-toast>

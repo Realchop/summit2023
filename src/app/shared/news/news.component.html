@@ -8,8 +8,10 @@
     </ion-card-subtitle>
   </ion-card-header>
   <ion-card-content *ngIf="!titleOnly" >
-    <ion-text color="tertiary" >
-      {{ data['description'] }}
+    <ion-text 
+      style="white-space: pre-wrap;"
+      color="tertiary"
+      [innerHTML]="data['description'] | link">
     </ion-text>
   </ion-card-content>
 </ion-card>
