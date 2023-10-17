@@ -9,6 +9,11 @@ ion-modal {
   }
 }
 
+.why {
+  --ion-item-background: transparent;
+  color: black;
+}
+
 .stop {
   max-width: 400px;
   align-self: center;
