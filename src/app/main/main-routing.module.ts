@@ -32,11 +32,6 @@ const routes: Routes = [
   //   component: MapComponent,
   //   pathMatch: 'full'
   // },
-  // {
-  //   path: 'settings',
-  //   component: SettingsComponent,
-  //   pathMatch: 'full'
-  // },
   {
     path: ':id',
     component: MainPage
