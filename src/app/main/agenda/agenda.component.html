@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="page-background">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Agenda</ion-title>
@@ -34,16 +34,16 @@
   <div *ngIf="data | async as Data" style="display: contents;" >
     <div *ngFor="let d of Data">
       <ion-card *ngIf="d['day'] == selectedSegment" >
-        <ion-card-content> 
+        <ion-card-content>
           <ion-item *ngFor="let i of d['activities']" >
-            <div 
+            <div
             style="
-                   display: flex; 
+                   display: flex;
                    width: 100%;
                    gap: 1em;
                    align-items: center;
                    " >
-              <p *ngFor="let s of (i | split: '@')" >
+              <p *ngFor="let s of (i | split: '@'); let i = index" [ngClass]="{'bold-text': isSecond(i)}">
                 {{ s }}
               </p>
             </div>

@@ -1,0 +1,26 @@
+.page-background {
+  --background: none;
+  background-image: url('../../../assets/images/agenda_back.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  z: -1;
+}
+
+ion-card {
+  background-color: rgba(255, 255, 255, 0.171);
+}
+
+ion-item {
+  --background: rgba(255, 255, 255, 0.705);
+}
+
+ion-item p {
+  font-weight: normal;
+}
+
+ion-item p.bold-text {
+  font-weight: bold;
+  color: var(--ion-color-primary);
+}

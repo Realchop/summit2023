@@ -23,4 +23,8 @@ export class AgendaComponent {
     this.selectedSegment = event.detail.value as number;
   }
 
+  isSecond(index: number): boolean {
+    return index === 1;
+  }
+
 }
