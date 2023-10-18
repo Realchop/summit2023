@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
     { title: 'Delegati', url: '/admin/users', icon: 'search', role: Roles.SUMA },
     { title: 'Vesti', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
     { title: 'Agenda', url: '/main/agenda', icon: 'calendar', role: Roles.DELEGATE },
-    { title: 'Mapa', url: '/main/map', icon: 'map', role: Roles.DELEGATE },
     { title: 'Odjavi se', url: 'logout', icon: 'exit', role: Roles.DELEGATE }
   ];
 

@@ -27,11 +27,6 @@ const routes: Routes = [
     component: NewsPageComponent,
     pathMatch: 'full'
   },
-  // {
-  //   path: 'map',
-  //   component: MapComponent,
-  //   pathMatch: 'full'
-  // },
   {
     path: ':id',
     component: MainPage
