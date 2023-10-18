@@ -14,6 +14,7 @@ import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
+import { HttpClientModule } from '@angular/common/http';
 // import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 
 @NgModule({
@@ -48,6 +49,7 @@ import { getMessaging, provideMessaging } from '@angular/fire/messaging';
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
