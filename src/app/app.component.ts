@@ -30,7 +30,11 @@ export class AppComponent implements OnInit {
   public toastMessage: string = '';
   public openToast: boolean = false;
 
-  constructor() {}
+  public live: boolean;
+
+  constructor() {
+    this.live = new Date().getDay() >= 26;
+  }
 
   async ngOnInit(): Promise<void> {
     const user = this.auth.currentUser;

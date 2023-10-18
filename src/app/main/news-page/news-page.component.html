@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button *ngIf="live" ></ion-menu-button>
     </ion-buttons>
     <ion-title>Vesti</ion-title>
   </ion-toolbar>
@@ -14,7 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="news$ | async as news">
+  <div 
+    *ngIf="news$ | async as news" 
+    [style]="live ? '' : 
+                    'display: flex; justify-content: center;'" >
     <div *ngIf="news.length else noNews">
       <app-news *ngFor="let n of news" [data]="n" ></app-news>
     </div>

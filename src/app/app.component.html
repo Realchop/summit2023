@@ -1,6 +1,6 @@
 <ion-app>
   <div *ngIf="!loading else loadingTemplate" style="display: contents;" >
-    <ion-split-pane *ngIf="success" contentId="main-content" >
+    <ion-split-pane *ngIf="success && live" contentId="main-content" >
       <ion-menu contentId="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
@@ -24,6 +24,7 @@
         <ion-button id="open-modal" ></ion-button>
       </ion-router-outlet>
     </ion-split-pane>
+    <ion-router-outlet></ion-router-outlet>
   </div>
 
 

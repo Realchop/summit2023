@@ -8,6 +8,10 @@ import { AgendaComponent } from './agenda/agenda.component';
 
 const routes: Routes = [
   {
+    path: '**',
+    redirectTo: 'news'
+  },
+  {
     path: '',
     redirectTo: 'profile',
     pathMatch: 'full'
