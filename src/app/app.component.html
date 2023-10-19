@@ -24,7 +24,7 @@
         <ion-button id="open-modal" ></ion-button>
       </ion-router-outlet>
     </ion-split-pane>
-    <ion-router-outlet></ion-router-outlet>
+    <ion-router-outlet *ngIf="!live"></ion-router-outlet>
   </div>
 
 

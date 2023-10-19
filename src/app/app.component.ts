@@ -33,7 +33,14 @@ export class AppComponent implements OnInit {
   public live: boolean;
 
   constructor() {
-    this.live = new Date().getDay() >= 26;
+    this.live = new Date().getDate() >= 26;
+    this.auth.onAuthStateChanged(
+      () => {
+        this.auth.currentUser?.getIdTokenResult(false).then((token) => {
+          if(token.claims['role'] == 'suma') this.live = true;
+        })
+      }
+    )
   }
 
   async ngOnInit(): Promise<void> {
