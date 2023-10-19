@@ -14,16 +14,16 @@
     </ion-toolbar>
   </ion-header>
 
-<div *ngFor="let user of userData$ | async">
+<div *ngIf="userData$ | async as user">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ user['fullName'] }}</ion-card-title>
-      <ion-card-subtitle>{{ user['phone'] }}</ion-card-subtitle>
+      <ion-card-title>{{ user.get('fullName') }}</ion-card-title>
+      <ion-card-subtitle>{{ user.get('phone') }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <div *ngIf="user['attended'].length else nolectures">
+      <div *ngIf="user.get('attended').length else nolectures">
         Prisustvo:
-        <ion-item *ngFor="let lecture of user['attended']" >
+        <ion-item *ngFor="let lecture of user.get('attended')" >
           {{ lecture }}
         </ion-item>
       </div>
@@ -32,7 +32,7 @@
       </ng-template>
     </ion-card-content>
   </ion-card>
-  <app-qr-generator [data]="user['uid']"></app-qr-generator>
+  <app-qr-generator [data]="uid"></app-qr-generator>
 </div>
 
 </ion-content>

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { Firestore, arrayRemove, arrayUnion, collection, collectionData, doc, docData, limit, query, updateDoc, where } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, arrayRemove, arrayUnion, collection, collectionData, doc, docData, getDoc, limit, query, updateDoc, where } from '@angular/fire/firestore';
 import { StorageService } from './storage.service';
 import { of, tap } from 'rxjs';
 
@@ -14,14 +14,22 @@ export class UserService {
 
   constructor() { }
 
+  getUid() {
+    return this.auth.currentUser!.uid;
+  }
+
   getCurrentUser() {
-    return this.getUser(this.auth.currentUser!.uid);
+    return this.getUser(this.getUid());
   }
 
   getUser(uid: string) {
-    const q = query(collection(this.firestore, 'users'), where('uid', '==', uid), limit(1));
+    // const q = query(collection(this.firestore, 'users'), where('uid', '==', uid), limit(1));
   
-    return collectionData(q, {idField: 'id'});
+    // return collectionData(q, {idField: 'id'});
+
+    const ref = doc(this.firestore, 'users', uid);
+
+    return getDoc(ref);
   }
 
   async getAllUsers() {
