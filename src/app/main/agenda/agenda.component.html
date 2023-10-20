@@ -43,7 +43,7 @@
                    gap: 1em;
                    align-items: center;
                    " >
-              <p *ngFor="let s of (i | split: '@'); let i = index" [ngClass]="{'bold-text': isSecond(i)}">
+              <p *ngFor="let s of (i | split: '@'); let i = index" [ngClass]="{'bold-text': isSecond(i)}" style="flex: 1;">
                 {{ s }}
               </p>
             </div>
