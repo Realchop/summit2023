@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-manage-news',
@@ -8,6 +9,7 @@ import { NewsService } from 'src/app/services/news.service';
 })
 export class ManageNewsComponent {
   private newsService = inject(NewsService);
+  private notificationService = inject(NotificationService);
   public selectedId: string | null = null;
   public title: string = '';
   public description: string = '';
@@ -29,10 +31,11 @@ export class ManageNewsComponent {
         description: this.description
       })
     .then(()=>{
-      this.clear();
       this.success = true;
       this.openToast = true;
       this.toastMessage = "Vest objavljena!";
+      this.notificationService.sendNotification(this.title, this.description);
+      this.clear();
     })
     .catch((err) => {
       console.log(err);

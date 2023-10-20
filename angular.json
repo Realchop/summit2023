@@ -31,7 +31,8 @@
                 "output": "./svg"
               },
               "src/manifest.webmanifest",
-              "src/firebase-messaging-sw.js"
+              "src/firebase-messaging-sw.js",
+              "src/pushpad-sw.js"
             ],
             "styles": [
               "src/theme/variables.scss",

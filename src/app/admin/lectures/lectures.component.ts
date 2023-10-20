@@ -28,15 +28,15 @@ export class LecturesComponent {
       return;
     }
 
-    const userRef = await firstValueFrom(this.userService.getUser(uid))
+    // const userRef = await firstValueFrom(this.userService.getUser(uid))
     
-    if(!userRef.length) {
-      this.toastMessage = "Korisnik ne postoji??\nZovi Lazara.";
-      this.openToast = true;
-      return;
-    }
+    // if(!userRef.length) {
+    //   this.toastMessage = "Korisnik ne postoji??\nZovi Lazara.";
+    //   this.openToast = true;
+    //   return;
+    // }
 
-    this.userService.attendLecture(userRef[0]['id'], this.lectureName);
+    this.userService.attendLecture(uid, this.lectureName);
     this.success = true;
     this.toastMessage = "Skeniranje uspešno.";
     this.openToast = true;

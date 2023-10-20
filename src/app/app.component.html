@@ -1,6 +1,6 @@
 <ion-app>
   <div *ngIf="!loading else loadingTemplate" style="display: contents;" >
-    <ion-split-pane *ngIf="success" contentId="main-content" >
+    <ion-split-pane *ngIf="success && live" contentId="main-content" >
       <ion-menu contentId="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
@@ -24,6 +24,7 @@
         <ion-button id="open-modal" ></ion-button>
       </ion-router-outlet>
     </ion-split-pane>
+    <ion-router-outlet *ngIf="!live"></ion-router-outlet>
   </div>
 
 
@@ -34,7 +35,7 @@
         <br>
         <br>
         <br>  
-        <ion-item>
+        <ion-item class="why" >
           <ion-text style="padding: 1em 0;" >
             Dobrodošli na 
             <ion-text color="primary" >Math</ion-text> 
@@ -45,11 +46,11 @@
           </ion-text>
         </ion-item>
         <br>
-        <ion-item>
+        <ion-item class="why" >
           <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
         </ion-item>
         <br>
-        <ion-item>
+        <ion-item class="why" >
           <ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
         </ion-item>
         <br>

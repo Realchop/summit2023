@@ -10,7 +10,10 @@ export class NewsPageComponent {
   private newsService = inject(NewsService);
   public news$;
 
+  public live: boolean = true;
+
   constructor() {
     this.news$ = this.newsService.getNews();
+    this.live = new Date().getDay() >= 26;
   }
 }

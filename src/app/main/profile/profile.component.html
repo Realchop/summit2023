@@ -14,20 +14,25 @@
     </ion-toolbar>
   </ion-header>
 
-<div *ngFor="let user of userData$ | async">
+<div *ngIf="userData$ | async as user">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>{{ user['fullName'] }}</ion-card-title>
+      <ion-card-title>{{ user.get('fullName') }}</ion-card-title>
+      <ion-card-subtitle>{{ user.get('phone') }}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      {{ user['attended'].length ? (user['attended'] | json) : "Nista :(" }}
+      <div *ngIf="user.get('attended').length else nolectures">
+        Prisustvo:
+        <ion-item *ngFor="let lecture of user.get('attended')" >
+          {{ lecture }}
+        </ion-item>
+      </div>
+      <ng-template #nolectures>
+        Ništa...
+      </ng-template>
     </ion-card-content>
   </ion-card>
-  <app-qr-generator [data]="user['uid']"></app-qr-generator>
+  <app-qr-generator [data]="uid"></app-qr-generator>
 </div>
-
-  <div style="display: flex; justify-content: center;" >
-    <app-qr-reader (scanned)="onScan($event)" ></app-qr-reader>
-  </div>
 
 </ion-content>

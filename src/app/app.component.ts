@@ -20,8 +20,6 @@ export class AppComponent implements OnInit {
     { title: 'Delegati', url: '/admin/users', icon: 'search', role: Roles.SUMA },
     { title: 'Vesti', url: '/main/news', icon: 'megaphone', role: Roles.DELEGATE },
     { title: 'Agenda', url: '/main/agenda', icon: 'calendar', role: Roles.DELEGATE },
-    { title: 'Mapa', url: '/main/map', icon: 'map', role: Roles.DELEGATE },
-    { title: 'Podesavanja', url: '/main/settings', icon: 'settings', role: Roles.DELEGATE },
     { title: 'Odjavi se', url: 'logout', icon: 'exit', role: Roles.DELEGATE }
   ];
 
@@ -32,7 +30,18 @@ export class AppComponent implements OnInit {
   public toastMessage: string = '';
   public openToast: boolean = false;
 
-  constructor() {}
+  public live: boolean;
+
+  constructor() {
+    this.live = new Date().getDate() >= 26;
+    this.auth.onAuthStateChanged(
+      () => {
+        this.auth.currentUser?.getIdTokenResult(false).then((token) => {
+          if(token.claims['role'] == 'suma') this.live = true;
+        })
+      }
+    )
+  }
 
   async ngOnInit(): Promise<void> {
     const user = this.auth.currentUser;

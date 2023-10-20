@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { MessagingService } from 'src/app/services/messaging.service';
+import { Component, inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,27 +6,13 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   private userService = inject(UserService);
-  private messagingService = inject(MessagingService);
-  
   public userData$; 
-  public notificationErrorOccured: boolean = false;
+  public uid: string;
 
   constructor() {
     this.userData$ = this.userService.getCurrentUser();
-   }
-
-   async ngOnInit(): Promise<void> {
-    this.notificationErrorOccured = await this.messagingService.init() === null;
-   }
-
-   ask() {
-    this.messagingService.ask();
-   }
-
-   // Actual functionality goes here
-   onScan(data: string): void {
-    alert(data);
+    this.uid = this.userService.getUid();
    }
 }

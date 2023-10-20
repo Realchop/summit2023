@@ -18,7 +18,8 @@
   (ionChange)="changeFilter($event)" 
   ></ion-searchbar>
 
-<div *ngIf="users$ | async | async as Users">
+  <div *ngIf="users$ | async | async as Users">
+  <!-- By far the most cursed thing here ^^^^^^^^^^ -->
   <ion-card *ngIf="!filter" >
     <ion-card-header>
       <ion-title color="primary" class="ion-text-center" >Ukupno ih ima: {{ Users.length }}</ion-title>
@@ -35,7 +36,6 @@
     </ion-card-header>
   </ion-card>
   <ion-card *ngFor="let user of Users" >
-    <!-- By far the most cursed thing here ^^^^^^^^^^ -->
     <ion-card-content *ngIf="filterOut(user['fullName'])" >
       <div style="display: flex; justify-content: space-between;" >
         <ion-title color="primary" >{{ user['fullName'] }}</ion-title>

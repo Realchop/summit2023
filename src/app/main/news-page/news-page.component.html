@@ -14,7 +14,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="news$ | async as news">
+  <div 
+    *ngIf="news$ | async as news" 
+    [style]="live ? '' : 
+                    'display: flex; justify-content: center;'" >
     <div *ngIf="news.length else noNews">
       <app-news *ngFor="let n of news" [data]="n" ></app-news>
     </div>
@@ -26,5 +29,6 @@
     </div>
   </ng-template>
 
+  <div id="pushpad-subscribe"></div>
 
 </ion-content>

@@ -14,6 +14,7 @@ import { provideAuth, getAuth, connectAuthEmulator } from '@angular/fire/auth';
 import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angular/fire/firestore';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
+import { HttpClientModule } from '@angular/common/http';
 // import { provideStorage, getStorage, connectStorageEmulator } from '@angular/fire/storage';
 
 @NgModule({
@@ -36,7 +37,7 @@ import { getMessaging, provideMessaging } from '@angular/fire/messaging';
         connectFirestoreEmulator(firestore, 'localhost', 8080);
       return firestore;
     }), 
-    provideMessaging(() => getMessaging()),
+    // provideMessaging(() => getMessaging()),
     //  provideStorage(() => {
     //   const storage = getStorage();
     //   if(environment.useEmulators)
@@ -44,10 +45,11 @@ import { getMessaging, provideMessaging } from '@angular/fire/messaging';
     //   return storage;
     // }),
     FormsModule, 
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('pushpad-sw.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
