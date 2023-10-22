@@ -22,12 +22,16 @@
     <ion-segment-button value="news">
       <ion-label>Vesti</ion-label>
     </ion-segment-button>
+    <ion-segment-button value="challenges">
+      <ion-label>Izazovi</ion-label>
+    </ion-segment-button>
     <ion-segment-button value="lectures">
       <ion-label>Predavanja</ion-label>
     </ion-segment-button>
   </ion-segment>
 
   <app-manage-news *ngIf="selectedSegment == 'news'"></app-manage-news>
+  <app-manage-challenges *ngIf="selectedSegment == 'challenges'"></app-manage-challenges>
   <app-lectures *ngIf="selectedSegment == 'lectures'"></app-lectures>
 
 </ion-content>

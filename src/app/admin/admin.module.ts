@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { SearchComponent } from './search/search.component';
 import { LecturesComponent } from './lectures/lectures.component';
+import { ManageChallengesComponent } from './manage-challenges/manage-challenges.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LecturesComponent } from './lectures/lectures.component';
     DashboardComponent, 
     ManageNewsComponent,
     SearchComponent,
-    LecturesComponent
+    LecturesComponent,
+    ManageChallengesComponent
   ],
   imports: [
     CommonModule,
