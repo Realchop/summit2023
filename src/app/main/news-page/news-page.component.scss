@@ -1,9 +1,8 @@
-.page-background {
-  --background: none;
-  background-image: url('../../../assets/images/news_back.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 100%;
-  z-index: -1;
+ion-content {
+  --background: url(../../../assets/images/3.png) center/auto 100% no-repeat;
+
+  @media screen and (min-width: calc(100vh * 16 / 9)) {
+    --background: url(../../../assets/images/3.png) center/100% 100% no-repeat;
+  }
+
 }

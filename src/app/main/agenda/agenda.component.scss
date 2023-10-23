@@ -1,11 +1,10 @@
-.page-background {
+ion-content {
   --background: none;
   background-image: url('../../../assets/images/agenda_back.png');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   height: 100%;
-  z: -1;
 }
 
 ion-card {

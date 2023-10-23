@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="page-background">
+<ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Vesti</ion-title>
@@ -16,8 +16,7 @@
 
   <div
     *ngIf="news$ | async as news"
-    [style]="live ? '' :
-                    'display: flex; justify-content: center;'" >
+    style="display: flex; justify-content: center;" >
     <div *ngIf="news.length else noNews">
       <app-news *ngFor="let n of news" [data]="n" ></app-news>
     </div>
