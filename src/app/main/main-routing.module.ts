@@ -5,6 +5,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { TimeGuard } from '../core/time.guard';
+import { ChallangesPageComponent } from './challanges-page/challanges-page.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsPageComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'challenges',
+    component: ChallangesPageComponent,
     pathMatch: 'full'
   },
   {

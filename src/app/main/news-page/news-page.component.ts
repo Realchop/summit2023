@@ -14,6 +14,6 @@ export class NewsPageComponent {
 
   constructor() {
     this.news$ = this.newsService.getNews();
-    this.live = new Date().getDay() >= 26;
+    this.live = new Date().getDate() >= 26;
   }
 }

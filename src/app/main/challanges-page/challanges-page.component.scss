@@ -1,0 +1,8 @@
+ion-content {
+    --background: url(../../../assets/images/6.png) center/auto 100% no-repeat;
+    
+    @media screen and (min-width: calc(100vh * 16 / 9)) {
+      --background: url(../../../assets/images/6.png) center/100% 100% no-repeat;
+    }
+}
+

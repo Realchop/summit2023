@@ -1,0 +1,90 @@
+<!-- Content -->
+<ion-card style="max-width: 80%; margin: 5% 10%;" >
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" >
+      {{ selectedId ? "Menjanje" : "Novi izazov" }}
+    </ion-card-title>
+    <ion-card-subtitle class="ion-text-center" >Linkovi obavezno sa http(s):// ispred</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-input 
+      type="text" 
+      [(ngModel)]="title"
+      placeholder="Naslov"
+      >
+    </ion-input>
+    
+    <ion-textarea 
+      [(ngModel)]="description"
+      placeholder="Poruka"
+      autoGrow="true"
+      >
+    </ion-textarea>
+  
+    <br>
+    
+    <div
+    *ngIf="!selectedId" 
+    style="display: flex; justify-content: space-evenly;" >
+      <ion-button 
+        [disabled]="!title || !description" 
+        color="success"
+        (click)="createNew()" 
+        >
+        Objavi
+      </ion-button>
+      <ion-button 
+      [disabled]="!title && !description"
+      color="danger"
+      (click)="clear()"
+      > 
+        Ponisti 
+      </ion-button>
+    </div>
+    <div 
+    *ngIf="selectedId" 
+    style="display: flex; justify-content: space-evenly;" >
+      <ion-button 
+        [disabled]="!title || !description" 
+        color="success"
+        (click)="updateChallenge()" 
+        >
+        Potvrdi
+      </ion-button>
+      <ion-button
+        color="secondary"
+        (click)="this.clear()"
+      >
+        Ponisti
+      </ion-button>
+      <ion-button 
+      [disabled]="!title && !description"
+      color="danger"
+      (click)="deleteChallenge()"
+      > 
+        Obrisi
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<div *ngIf="challenges$ | async as challenges">
+<ion-title *ngIf="challenges.length" >Aktivni izazovi:</ion-title>
+    <app-news 
+    (click)="selectChallenge(c)"
+    *ngFor="let c of challenges" 
+    [data]="c" 
+    [titleOnly]="true"
+    [selected]="c['id'] == selectedId"
+    ></app-news>
+</div>
+
+<!-- Toasts -->
+<ion-toast
+class="ion-text-center"
+[isOpen]="openToast"
+[message]="toastMessage"
+[color]="success ? 'success' : 'danger'"
+[duration]="3000"
+(didDismiss)="openToast=false"
+></ion-toast>

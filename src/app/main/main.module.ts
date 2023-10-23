@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { AgendaComponent } from './agenda/agenda.component';
+import { ChallangesPageComponent } from './challanges-page/challanges-page.component';
 import { SplitPipe } from '../core/split.pipe';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { SplitPipe } from '../core/split.pipe';
     ProfileComponent,
     NewsPageComponent,
     AgendaComponent,
+    ChallangesPageComponent,
     SplitPipe
   ]
 })
